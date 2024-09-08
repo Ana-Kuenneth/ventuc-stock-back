@@ -8,6 +8,10 @@ const brandSchema = new mongoose.Schema({
     code: {
         type: Number,
         required: true
+    },
+    date: {
+        type: Date,
+        required: true
     }
 }, { timestamps: true });
 

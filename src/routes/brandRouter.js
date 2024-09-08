@@ -29,7 +29,8 @@ router.post('/brands', async (req, res) => {
     try {
         const brandData = {
             name: req.body.name,
-            code: req.body.code
+            code: req.body.code,
+            date: req.body.date
         };
 // Crear nueva marca
         const brand = new Brand(brandData);
@@ -62,7 +63,7 @@ router.patch('/brands/:code', getBrandByCode, async (req, res) => {
 router.delete('/brands/:code', getBrandByCode, async (req, res) => {
     try {
       const brand = res.brand;
-      await Brand.findByIdAndDelete(brand.code);
+      await brand.remove();
       return res.json({ message: 'Marca eliminada correctamente' });
     } catch (error) {
       return res.status(500).json({ message: 'Error al eliminar la marca', error: error.message });
