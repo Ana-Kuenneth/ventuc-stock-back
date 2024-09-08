@@ -29,7 +29,8 @@ router.post('/categories', async (req, res) => {
     try {
         const categoryData = {
             name: req.body.name,
-            code: req.body.code
+            code: req.body.code,
+            date: req.body.date,
         };
 // Crear nueva categoría
         const category = new Category(categoryData);
