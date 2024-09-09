@@ -62,11 +62,14 @@ router.patch('/brands/:code', getBrandByCode, async (req, res) => {
 // Eliminar marca
 router.delete('/brands/:code', getBrandByCode, async (req, res) => {
     try {
-      const brand = res.brand;
-      await brand.remove();
-      return res.json({ message: 'Marca eliminada correctamente' });
+        const brand = res.brand;
+        console.log('Eliminando marca:', brand); // Para verificar que se encuentra la marca correctamente
+        // Eliminamos la marca utilizando deleteOne
+        await Brand.deleteOne({ code: req.params.code });
+        return res.json({ message: 'Marca eliminada correctamente' });
     } catch (error) {
-      return res.status(500).json({ message: 'Error al eliminar la marca', error: error.message });
+        console.error('Error al eliminar la marca:', error);
+        return res.status(500).json({ message: 'Error al eliminar la marca', error: error.message });
     }
   })
 
