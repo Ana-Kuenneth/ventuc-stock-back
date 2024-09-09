@@ -62,11 +62,14 @@ router.patch('/categories/:code', getCategoryByCode, async (req, res) => {
 // Eliminar categoría
 router.delete('/categories/:code', getCategoryByCode, async (req, res) => {
     try {
-      const category = res.category;
-      await Category.findByIdAndDelete(category.code);
-      return res.json({ message: 'Categoría eliminada correctamente' });
+        const category = res.category;
+        console.log('Eliminando categoría:', category); // Para verificar que se encuentra la categoría correctamente
+        // Eliminamos la categoría utilizando deleteOne
+        await Category.deleteOne({ code: req.params.code });
+        return res.json({ message: 'Categoría eliminada correctamente' });
     } catch (error) {
-      return res.status(500).json({ message: 'Error al eliminar la categoría', error: error.message });
+        console.error('Error al eliminar la categoría:', error);
+        return res.status(500).json({ message: 'Error al eliminar la categoría', error: error.message });
     }
   })
 
