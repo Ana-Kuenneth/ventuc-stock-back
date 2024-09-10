@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/productModel');
+const Movement = require('../models/movementModel');
 const { getProductByCode, getProductByName } = require('../middlewares/productMiddleware');
 
 
@@ -97,6 +98,41 @@ router.patch('/products/:code', getProductByCode, async (req, res) => {
         res.status(400).json({ message: err.message });
     }
 });
+
+router.patch('/products/:code/stock', async (req, res) => {
+    const { code } = req.params;
+    const { quantity, actionType, description } = req.body;
+  
+    try {
+      const product = await Product.findOne({ code });
+      if (!product) return res.status(404).json({ message: 'Producto no encontrado' });
+  
+      // Ajustar stock según la acción
+      if (actionType === 'increment') {
+        product.stock += quantity;
+      } else if (actionType === 'decrement') {
+        product.stock -= quantity;
+      }
+  
+      await product.save();
+  
+      // Registrar movimiento de stock
+      const movement = new Movement({
+        type: actionType === 'increment' ? 'Incremento de Stock' : 'Reducción de Stock',
+        code: product.code,
+        name: product.name,
+        previousStock: product.stock,
+        newStock: product.stock,
+        description,
+        date: new Date(),
+      });
+  
+      await movement.save();
+      res.json(product);
+    } catch (error) {
+      res.status(500).json({ error: 'Error al actualizar el stock' });
+    }
+  });
 
 // Eliminar prod
 router.delete('/products/:code', getProductByCode, async (req, res) => {
