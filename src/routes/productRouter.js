@@ -59,36 +59,49 @@ router.post('/products', async (req, res) => {
 
 
 // Actualiazr prod
+// router.patch('/products/:code', getProductByCode, async (req, res) => {
+//     if (req.body.name != null) {    
+//         res.product.name = req.body.name;
+//     }
+//     if (req.body.description != null) {
+//         res.product.description = req.body.description;
+//     }
+//     if (req.body.category != null) {
+//         res.product.category = req.body.category;
+//     }
+//     if (req.body.brand != null) {
+//         res.product.brand = req.body.brand;
+//     }
+//     if (req.body.image != null) {
+//         res.product.image = req.body.image;
+//     }
+//     if (req.body.date != null) {
+//         res.product.date = req.body.date;
+//     }
+//     if (req.body.buyer != null) {
+//         res.product.buyer = req.body.buyer;
+//     }
+//     if (req.body.stock != null) {
+//         res.product.stock = req.body.stock;
+//     } 
+//     if (req.body.price != null) {
+//         res.product.price = req.body.price;
+//     }
+//     if (req.body.code != null) {
+//         res.product.code = req.body.code;
+//     }
+
+//     try {
+//         const updatedProduct = await res.product.save();
+//         res.json(updatedProduct);
+//     } catch (err) {
+//         res.status(400).json({ message: err.message });
+//     }
+// });
+
 router.patch('/products/:code', getProductByCode, async (req, res) => {
-    if (req.body.name != null) {    
-        res.product.name = req.body.name;
-    }
-    if (req.body.description != null) {
-        res.product.description = req.body.description;
-    }
-    if (req.body.category != null) {
-        res.product.category = req.body.category;
-    }
-    if (req.body.brand != null) {
-        res.product.brand = req.body.brand;
-    }
-    if (req.body.image != null) {
-        res.product.image = req.body.image;
-    }
-    if (req.body.date != null) {
-        res.product.date = req.body.date;
-    }
-    if (req.body.buyer != null) {
-        res.product.buyer = req.body.buyer;
-    }
     if (req.body.stock != null) {
         res.product.stock = req.body.stock;
-    } 
-    if (req.body.price != null) {
-        res.product.price = req.body.price;
-    }
-    if (req.body.code != null) {
-        res.product.code = req.body.code;
     }
 
     try {
@@ -98,41 +111,6 @@ router.patch('/products/:code', getProductByCode, async (req, res) => {
         res.status(400).json({ message: err.message });
     }
 });
-
-router.patch('/products/:code/stock', getProductByCode, async (req, res) => {
-    const { code } = req.params;
-    const { quantity, actionType, description } = req.body;
-  
-    try {
-      const product = await Product.findOne({ code });
-      if (!product) return res.status(404).json({ message: 'Producto no encontrado' });
-  
-      // Ajustar stock según la acción
-      if (actionType === 'increment') {
-        product.stock += quantity;
-      } else if (actionType === 'decrement') {
-        product.stock -= quantity;
-      }
-  
-      await product.save();
-  
-      // Registrar movimiento de stock
-      const movement = new Movement({
-        type: actionType === 'increment' ? 'Incremento de Stock' : 'Reducción de Stock',
-        code: product.code,
-        name: product.name,
-        previousStock: product.stock,
-        newStock: product.stock,
-        description,
-        date: new Date(),
-      });
-  
-      await movement.save();
-      res.json(product);
-    } catch (error) {
-      res.status(500).json({ error: 'Error al actualizar el stock' });
-    }
-  });
 
 // Eliminar prod
 router.delete('/products/:code', getProductByCode, async (req, res) => {
