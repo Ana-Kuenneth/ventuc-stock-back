@@ -99,7 +99,7 @@ router.patch('/products/:code', getProductByCode, async (req, res) => {
     }
 });
 
-router.patch('/products/:code/stock', async (req, res) => {
+router.patch('/products/:code/stock', getProductByCode, async (req, res) => {
     const { code } = req.params;
     const { quantity, actionType, description } = req.body;
   
