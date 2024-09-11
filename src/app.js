@@ -33,6 +33,6 @@ connectDB();
 
 console.log(port);
 app.listen(port, ()=>{
-    console.log('app corriendo en el puerto: ', port);
+    console.log('App corriendo en el puerto: ', port);
 })
 
