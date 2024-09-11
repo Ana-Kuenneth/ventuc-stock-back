@@ -59,59 +59,59 @@ router.post('/products', async (req, res) => {
 
 
 // Actualiazr prod
-// router.patch('/products/:code', getProductByCode, async (req, res) => {
-//     if (req.body.name != null) {    
-//         res.product.name = req.body.name;
-//     }
-//     if (req.body.description != null) {
-//         res.product.description = req.body.description;
-//     }
-//     if (req.body.category != null) {
-//         res.product.category = req.body.category;
-//     }
-//     if (req.body.brand != null) {
-//         res.product.brand = req.body.brand;
-//     }
-//     if (req.body.image != null) {
-//         res.product.image = req.body.image;
-//     }
-//     if (req.body.date != null) {
-//         res.product.date = req.body.date;
-//     }
-//     if (req.body.buyer != null) {
-//         res.product.buyer = req.body.buyer;
-//     }
-//     if (req.body.stock != null) {
-//         res.product.stock = req.body.stock;
-//     } 
-//     if (req.body.price != null) {
-//         res.product.price = req.body.price;
-//     }
-//     if (req.body.code != null) {
-//         res.product.code = req.body.code;
-//     }
+router.patch('/products/actualizarStock/:code', getProductByCode, async (req, res) => {
+    if (req.body.name != null) {    
+        res.product.name = req.body.name;
+    }
+    if (req.body.description != null) {
+        res.product.description = req.body.description;
+    }
+    if (req.body.category != null) {
+        res.product.category = req.body.category;
+    }
+    if (req.body.brand != null) {
+        res.product.brand = req.body.brand;
+    }
+    if (req.body.image != null) {
+        res.product.image = req.body.image;
+    }
+    if (req.body.date != null) {
+        res.product.date = req.body.date;
+    }
+    if (req.body.buyer != null) {
+        res.product.buyer = req.body.buyer;
+    }
+    if (req.body.stock != null) {
+        res.product.stock = req.body.stock;
+    } 
+    if (req.body.price != null) {
+        res.product.price = req.body.price;
+    }
+    if (req.body.code != null) {
+        res.product.code = req.body.code;
+    }
 
-//     try {
-//         const updatedProduct = await res.product.save();
-//         res.json(updatedProduct);
-//     } catch (err) {
-//         res.status(400).json({ message: err.message });
-//     }
-// });
+    try {
+        const updatedProduct = await res.product.save();
+        res.json(updatedProduct);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+});
 
 // Actualizar stock de producto
-router.patch('/products/actualizarStock/:code', getProductByCode, async (req, res) => {
-    if (req.body.stock != null) {
-      res.product.stock = req.body.stock;
-    }
+// router.patch('/products/actualizarStock/:code', getProductByCode, async (req, res) => {
+//     if (req.body.stock != null) {
+//       res.product.stock = req.body.stock;
+//     }
   
-    try {
-      const updatedProduct = await res.product.save();
-      res.json(updatedProduct);
-    } catch (err) {
-      res.status(400).json({ message: err.message });
-    }
-  });
+//     try {
+//       const updatedProduct = await res.product.save();
+//       res.json(updatedProduct);
+//     } catch (err) {
+//       res.status(400).json({ message: err.message });
+//     }
+//   });
 
 // Eliminar prod
 router.delete('/products/:code', getProductByCode, async (req, res) => {
