@@ -99,18 +99,19 @@ router.post('/products', async (req, res) => {
 //     }
 // });
 
+// Actualizar stock de producto
 router.patch('/products/:code', getProductByCode, async (req, res) => {
     if (req.body.stock != null) {
-        res.product.stock = req.body.stock;
+      res.product.stock = req.body.stock;
     }
-
+  
     try {
-        const updatedProduct = await res.product.save();
-        res.json(updatedProduct);
+      const updatedProduct = await res.product.save();
+      res.json(updatedProduct);
     } catch (err) {
-        res.status(400).json({ message: err.message });
+      res.status(400).json({ message: err.message });
     }
-});
+  });
 
 // Eliminar prod
 router.delete('/products/:code', getProductByCode, async (req, res) => {
