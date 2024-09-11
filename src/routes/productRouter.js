@@ -100,7 +100,7 @@ router.post('/products', async (req, res) => {
 // });
 
 // Actualizar stock de producto
-router.patch('/products/:code', getProductByCode, async (req, res) => {
+router.patch('/products/actualizarStock/:code', getProductByCode, async (req, res) => {
     if (req.body.stock != null) {
       res.product.stock = req.body.stock;
     }
