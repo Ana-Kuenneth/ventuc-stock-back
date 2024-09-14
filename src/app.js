@@ -7,6 +7,7 @@ const productRouter = require('./routes/productRouter');
 const brandRouter = require('./routes/brandRouter');
 const authRouter = require('./routes/authRouter');
 const categoryRouter = require('./routes/categoryRouter');
+const movementRouter = require('./routes/movementRouter');
 
 dotenv.config();
 const app = express();
@@ -26,7 +27,8 @@ const port = process.env.PORT;
 app.use('/api/auth', authRouter)
 app.use('/', categoryRouter)
 app.use('/', productRouter);
-app.use('/', brandRouter)
+app.use('/', brandRouter);
+app.use('/', movementRouter);
 
 
 connectDB();
