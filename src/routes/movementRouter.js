@@ -27,6 +27,7 @@ router.post('/movements', async (req, res) => {
         const movementData = {
             type: req.body.type,
             code: req.body.code,
+            productCode: req.body.productCode,
             name: req.body.name,
             description: req.body.description,
             date: req.body.date,
