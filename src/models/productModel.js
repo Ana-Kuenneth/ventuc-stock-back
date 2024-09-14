@@ -29,7 +29,11 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    price: {
+    buyPrice: {
+        type: Number,
+        required: true
+    },
+    salePrice: {
         type: Number,
         required: true
     },

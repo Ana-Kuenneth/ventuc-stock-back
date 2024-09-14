@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/productModel');
-const Movement = require('../models/movementModel');
+// const Movement = require('../models/movementModel');
 const { getProductByCode, getProductByName } = require('../middlewares/productMiddleware');
 
 
@@ -40,13 +40,14 @@ router.post('/products', async (req, res) => {
         const productData = {
             name: req.body.name,
             description: req.body.description,
-            category: req.body.category,
-            brand: req.body.brand,
             image: req.body.image,
             date: req.body.date,
+            brand: req.body.brand,
             buyer: req.body.buyer,
             stock: req.body.stock,
-            price: req.body.price,
+            buyPrice: req.body.buyPrice,
+            salePrice: req.body.salePrice,
+            category: req.body.category,
             code: req.body.code
         };
 // Crear nuevo prod
@@ -85,8 +86,11 @@ router.patch('/products/actualizarStock/:code', getProductByCode, async (req, re
     if (req.body.stock != null) {
         res.product.stock = req.body.stock;
     } 
-    if (req.body.price != null) {
-        res.product.price = req.body.price;
+    if (req.body.buyPrice != null) {
+        res.product.buyPrice = req.body.buyPrice;
+    }
+    if (req.body.salePrice != null) {
+        res.product.salePrice = req.body.salePrice;
     }
     if (req.body.code != null) {
         res.product.code = req.body.code;

@@ -22,6 +22,14 @@ const movementSchema = new mongoose.Schema({
         required: true,
         default: Date.now
     },
+    brand: {
+        type: String,
+        required: true
+    },
+    buyer: {
+        type: String,
+        required: true
+    },
     previousStock: {
         type: Number,
         required: true,
@@ -30,6 +38,10 @@ const movementSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
+    buyPrice: {
+        type: Number,
+        required: true
+    }
 }, { timestamps: true });
 
 const Movement = mongoose.model('Movement', movementSchema);
