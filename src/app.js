@@ -8,6 +8,7 @@ const brandRouter = require('./routes/brandRouter');
 const authRouter = require('./routes/authRouter');
 const categoryRouter = require('./routes/categoryRouter');
 const movementRouter = require('./routes/movementRouter');
+const saleRouter = require('./routes/saleRouter');
 
 dotenv.config();
 const app = express();
@@ -29,7 +30,7 @@ app.use('/', categoryRouter)
 app.use('/', productRouter);
 app.use('/', brandRouter);
 app.use('/', movementRouter);
-
+app.use('/', saleRouter);
 
 connectDB();
 
