@@ -34,10 +34,10 @@ router.post('/salesMovements', async (req, res) => {
             client: req.body.client,
             previousStock: req.body.previousStock,
             newStock: req.body.newStock,
-            productPrice: req.body.salePrice,
+            productPrice: req.body.productPrice,
             incremento: req.body.incremento,
             descIncremento: req.body.descIncremento,
-            total: req.body.totalSuma,
+            total: req.body.total,
             payMethod: req.body.payMethod,
         };
 
