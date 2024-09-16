@@ -1,3 +1,4 @@
+//saleMovementModel.js
 const mongoose = require('mongoose');
 
 const saleMovementSchema = new mongoose.Schema({

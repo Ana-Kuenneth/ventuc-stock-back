@@ -1,4 +1,4 @@
-//productRouter.js
+//saleMovementRouter.js
 const express = require('express');
 const router = express.Router();
 const SaleMovement = require('../models/saleMovementModel');

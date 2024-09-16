@@ -1,3 +1,4 @@
+//saleMovementMiddleware.js
 const SaleMovement = require('../models/saleMovementModel');
 
 async function getSaleMovementByCode(req, res, next) {
