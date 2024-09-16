@@ -26,7 +26,7 @@ const saleMovementSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    buyer: {
+    client: {
         type: String,
         required: true
     },
