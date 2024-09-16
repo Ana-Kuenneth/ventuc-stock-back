@@ -6,7 +6,7 @@ const { getSaleMovementByCode } = require('../middlewares/saleMovementMiddleware
 
 
 // Obt todos los movimiento
-router.get('/saleMovements', async (req, res) => {
+router.get('/salesMovements', async (req, res) => {
     try {
         const movements = await SaleMovement.find();
         res.json(movements);
@@ -16,22 +16,22 @@ router.get('/saleMovements', async (req, res) => {
 })
 
 //Obt un movimiento por ID tiene la verificación en el archivo middleware jiji
-router.get('/saleMovements/code/:code', getSaleMovementByCode, (req, res) => {
+router.get('/salesMovements/code/:code', getSaleMovementByCode, (req, res) => {
     res.json(res.movement)
 }),
 
 
 // Crear nuevo movimiento
-router.post('/saleMovements', async (req, res) => {
+router.post('/salesMovements', async (req, res) => {
     try {
-        const movementData = {
+        const saleMovementData = {
             type: req.body.type,
             code: req.body.code,
             productCode: req.body.productCode,
             name: req.body.name,
             date: req.body.date,
             brand: req.body.brand,
-            buyer: req.body.buyer,
+            client: req.body.client,
             previousStock: req.body.previousStock,
             newStock: req.body.newStock,
             productPrice: req.body.salePrice,
@@ -42,9 +42,9 @@ router.post('/saleMovements', async (req, res) => {
         };
 
 // Crear nuevo movimiento
-        const movement = new SaleMovement(movementData);
-        const newMovement = await movement.save();
-        res.status(201).json(newMovement);
+        const saleMovement = new SaleMovement(saleMovementData);
+        const newSaleMovement = await saleMovement.save();
+        res.status(201).json(newSaleMovement);
     } catch (err) {
         res.status(400).json({ message: "movimiento no creado" + err.message });
     }
@@ -95,7 +95,7 @@ router.post('/saleMovements', async (req, res) => {
 
 
 // Eliminar movimiento
-router.delete('/saleMovements/:code', getSaleMovementByCode, async (req, res) => {
+router.delete('/salesMovements/:code', getSaleMovementByCode, async (req, res) => {
     try {
       const movement = res.movement;
       await SaleMovement.findByIdAndDelete(movement.code);
