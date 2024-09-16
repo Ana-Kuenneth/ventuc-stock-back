@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const saleSchema = new mongoose.Schema({
-    payMethod: {
+    type: {
         type: String,
         required: true
     },
@@ -34,6 +34,14 @@ const saleSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    previousStock: {
+        type: Number,
+        required: true,
+    },
+    newStock: {
+        type: Number,
+        required: true
+    },
     quantity: {
         type: Number,
         required: true,
@@ -51,7 +59,11 @@ const saleSchema = new mongoose.Schema({
     total: {
         type: Number,
         required: true
-    }
+    },
+    payMethod: {
+        type: String,
+        required: true
+    },
 }, { timestamps: true });
 
 const Sale = mongoose.model('Sale', saleSchema);

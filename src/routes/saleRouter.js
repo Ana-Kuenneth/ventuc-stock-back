@@ -25,7 +25,7 @@ router.get('/sales/code/:code', getSaleByCode, (req, res) => {
 router.post('/sales', async (req, res) => {
     try {
         const saleData = {
-            payMethod: req.body.payMethod,
+            type: req.body.type,
             code: req.body.code,
             productCode: req.body.productCode,
             productName: req.body.productName,
@@ -33,11 +33,14 @@ router.post('/sales', async (req, res) => {
             saleDate: req.body.saleDate,
             productBrand: req.body.productBrand,
             client: req.body.client,
+            previousStock: req.body.previousStock,
+            newStock: req.body.newStock,
             quantity: req.body.quantity,
             salePrice: req.body.salePrice,
             incremento: req.body.incremento,
             descripcionIncremento: req.body.descripcionIncremento,
             total: req.body.total,
+            payMethod: req.body.payMethod,
         };
 
 // Crear nueva venta
