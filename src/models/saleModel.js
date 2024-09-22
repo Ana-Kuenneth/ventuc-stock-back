@@ -51,10 +51,12 @@ const saleSchema = new mongoose.Schema({
         required: true
     },
     incremento: {
-        type: Number
+        type: Number,
+        required: true
     },
     descripcionIncremento: {
-        type: String
+        type: String,
+        required: true
     },
     total: {
         type: Number,
